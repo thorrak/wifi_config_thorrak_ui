@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useStore } from '@nanostores/preact';
 import { StatusCard } from './components/StatusCard';
-import { NetworkList } from './components/NetworkList';
-import { SavedNetworks } from './components/SavedNetworks';
+import { SetupWizard } from './components/SetupWizard';
 import { LanguageSelector } from './components/LanguageSelector';
 import { api } from './api/client';
-import { appMessages } from './i18n/messages/app';
 import type { WifiStatus } from './types';
 import './styles/variables.css';
 import './styles/base.css';
@@ -36,18 +33,14 @@ export function App() {
     setTimeout(loadStatus, 2000);
   };
 
-  const t = useStore(appMessages);
-
   return (
     <div class="app">
       <header class="header">
-        <h1>{t.title}</h1>
         <LanguageSelector />
       </header>
 
       <StatusCard status={status} loading={loading} />
-      <NetworkList onConnect={handleConnect} />
-      <SavedNetworks />
+      <SetupWizard onConnect={handleConnect} />
     </div>
   );
 }

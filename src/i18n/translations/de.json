@@ -28,5 +28,20 @@
     "loading": "Laden...",
     "empty": "Keine gespeicherten Netzwerke",
     "priority": "Priorität: {priority}"
+  },
+  "setup": {
+    "stepOf": "Schritt {current} von {total}",
+    "welcomeTitle": "Willkommen beim ESP WiFi Manager",
+    "welcomeSubtitle": "Richten wir Ihr Gerät ein.",
+    "deviceNameLabel": "Gerätename",
+    "deviceNamePreview": "Ihr Gerät wird unter {name}.local erreichbar sein",
+    "deviceNameHelp": "Was ist das?",
+    "deviceNameHelpText": "Mit diesem Namen finden Sie Ihr Gerät im lokalen Netzwerk. Anstatt sich eine IP-Adresse zu merken, können Sie {name}.local in Ihrem Browser verwenden.",
+    "next": "Weiter",
+    "saving": "Speichern...",
+    "errorInvalid": "Verwenden Sie 1–63 Kleinbuchstaben, Zahlen oder Bindestriche. Darf nicht mit Bindestrich beginnen/enden.",
+    "errorSaveFailed": "Speichern fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "wifiTitle": "Mit WLAN verbinden",
+    "wifiSubtitle": "Wählen Sie Ihr Netzwerk aus."
   }
 }

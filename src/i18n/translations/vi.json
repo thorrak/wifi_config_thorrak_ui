@@ -28,5 +28,20 @@
     "loading": "Đang tải...",
     "empty": "Không có mạng đã lưu",
     "priority": "Ưu tiên: {priority}"
+  },
+  "setup": {
+    "stepOf": "Bước {current} / {total}",
+    "welcomeTitle": "Chào mừng đến ESP WiFi Manager",
+    "welcomeSubtitle": "Hãy thiết lập thiết bị của bạn.",
+    "deviceNameLabel": "Tên thiết bị",
+    "deviceNamePreview": "Thiết bị của bạn sẽ truy cập được tại {name}.local",
+    "deviceNameHelp": "Đây là gì?",
+    "deviceNameHelpText": "Tên này giúp bạn tìm thiết bị trên mạng nội bộ. Thay vì nhớ địa chỉ IP, bạn có thể dùng {name}.local trong trình duyệt.",
+    "next": "Tiếp theo",
+    "saving": "Đang lưu...",
+    "errorInvalid": "Dùng 1–63 chữ thường, số hoặc dấu gạch ngang. Không bắt đầu/kết thúc bằng dấu gạch ngang.",
+    "errorSaveFailed": "Lưu thất bại. Vui lòng thử lại.",
+    "wifiTitle": "Kết nối WiFi",
+    "wifiSubtitle": "Chọn mạng của bạn để kết nối."
   }
 }

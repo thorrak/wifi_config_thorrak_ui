@@ -28,5 +28,20 @@
     "loading": "Chargement...",
     "empty": "Aucun réseau enregistré",
     "priority": "Priorité : {priority}"
+  },
+  "setup": {
+    "stepOf": "Étape {current} sur {total}",
+    "welcomeTitle": "Bienvenue sur ESP WiFi Manager",
+    "welcomeSubtitle": "Configurons votre appareil.",
+    "deviceNameLabel": "Nom de l'appareil",
+    "deviceNamePreview": "Votre appareil sera accessible à {name}.local",
+    "deviceNameHelp": "Qu'est-ce que c'est ?",
+    "deviceNameHelpText": "Ce nom vous permet de trouver votre appareil sur le réseau local. Au lieu de mémoriser une adresse IP, vous pouvez utiliser {name}.local dans votre navigateur.",
+    "next": "Suivant",
+    "saving": "Enregistrement...",
+    "errorInvalid": "Utilisez 1 à 63 lettres minuscules, chiffres ou tirets. Ne peut pas commencer/finir par un tiret.",
+    "errorSaveFailed": "Échec de l'enregistrement. Veuillez réessayer.",
+    "wifiTitle": "Se connecter au WiFi",
+    "wifiSubtitle": "Sélectionnez votre réseau pour vous connecter."
   }
 }

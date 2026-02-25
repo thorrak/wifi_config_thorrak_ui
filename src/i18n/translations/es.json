@@ -28,5 +28,20 @@
     "loading": "Cargando...",
     "empty": "Sin redes guardadas",
     "priority": "Prioridad: {priority}"
+  },
+  "setup": {
+    "stepOf": "Paso {current} de {total}",
+    "welcomeTitle": "Bienvenido a ESP WiFi Manager",
+    "welcomeSubtitle": "Vamos a configurar tu dispositivo.",
+    "deviceNameLabel": "Nombre del dispositivo",
+    "deviceNamePreview": "Tu dispositivo estará disponible en {name}.local",
+    "deviceNameHelp": "¿Qué es esto?",
+    "deviceNameHelpText": "Este nombre te permite encontrar tu dispositivo en la red local. En lugar de recordar una dirección IP, puedes usar {name}.local en tu navegador.",
+    "next": "Siguiente",
+    "saving": "Guardando...",
+    "errorInvalid": "Usa 1–63 letras minúsculas, números o guiones. No puede empezar/terminar con guion.",
+    "errorSaveFailed": "Error al guardar. Inténtalo de nuevo.",
+    "wifiTitle": "Conectar a WiFi",
+    "wifiSubtitle": "Selecciona tu red para conectarte."
   }
 }
