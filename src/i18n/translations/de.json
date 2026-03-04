@@ -14,9 +14,18 @@
     "scanning": "Suche...",
     "empty": "Klicken Sie auf Suchen, um Netzwerke zu finden",
     "hidden": "(versteckt)",
+    "select": "Auswählen",
     "cancel": "Abbrechen",
     "connect": "Verbinden",
-    "password": "Passwort"
+    "password": "Passwort",
+    "connectingTo": "Verbindung zu \"{ssid}\"...",
+    "connectingWait": "Dies kann einige Sekunden dauern.",
+    "connectSuccess": "Verbunden mit \"{ssid}\"",
+    "connectSuccessIp": "IP-Adresse: {ip}",
+    "connectFailed": "Verbindung fehlgeschlagen",
+    "connectFailedDesc": "Verbindung zum Netzwerk nicht möglich. Überprüfen Sie das Passwort und versuchen Sie es erneut.",
+    "dismiss": "OK",
+    "retry": "Erneut versuchen"
   },
   "saved": {
     "title": "Gespeicherte Netzwerke",

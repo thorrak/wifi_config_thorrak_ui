@@ -14,9 +14,18 @@
     "scanning": "Escaneando...",
     "empty": "Pulse Escanear para buscar redes",
     "hidden": "(oculta)",
+    "select": "Seleccionar",
     "cancel": "Cancelar",
     "connect": "Conectar",
-    "password": "Contraseña"
+    "password": "Contraseña",
+    "connectingTo": "Conectando a \"{ssid}\"...",
+    "connectingWait": "Esto puede tardar unos segundos.",
+    "connectSuccess": "Conectado a \"{ssid}\"",
+    "connectSuccessIp": "Dirección IP: {ip}",
+    "connectFailed": "Error de conexión",
+    "connectFailedDesc": "No se pudo conectar a la red. Verifica la contraseña e inténtalo de nuevo.",
+    "dismiss": "OK",
+    "retry": "Reintentar"
   },
   "saved": {
     "title": "Redes guardadas",

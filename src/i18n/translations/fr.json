@@ -14,9 +14,18 @@
     "scanning": "Analyse...",
     "empty": "Appuyez sur Analyser pour rechercher des réseaux",
     "hidden": "(masqué)",
+    "select": "Sélectionner",
     "cancel": "Annuler",
     "connect": "Connecter",
-    "password": "Mot de passe"
+    "password": "Mot de passe",
+    "connectingTo": "Connexion à \"{ssid}\"...",
+    "connectingWait": "Cela peut prendre quelques secondes.",
+    "connectSuccess": "Connecté à \"{ssid}\"",
+    "connectSuccessIp": "Adresse IP : {ip}",
+    "connectFailed": "Échec de la connexion",
+    "connectFailedDesc": "Impossible de se connecter au réseau. Vérifiez le mot de passe et réessayez.",
+    "dismiss": "OK",
+    "retry": "Réessayer"
   },
   "saved": {
     "title": "Réseaux enregistrés",

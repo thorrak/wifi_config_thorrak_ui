@@ -8,12 +8,14 @@
 }
 
 .wifi-step .setup-title {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-1);
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 .wifi-step .setup-subtitle {
   margin: 0 0 var(--space-6);
+  font-size: 0.95rem;
 }

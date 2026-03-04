@@ -50,9 +50,9 @@ input:focus {
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: var(--space-4) 0;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
 }
 
 .header h1 {

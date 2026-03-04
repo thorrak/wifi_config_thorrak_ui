@@ -62,7 +62,7 @@ export function DeviceNameStep() {
           {t.deviceNameLabel}
         </label>
 
-        <div class="device-name-input-group">
+        <div class={`device-name-input-group ${error ? 'has-error' : ''}`}>
           <input
             id="device-name"
             type="text"
@@ -71,7 +71,7 @@ export function DeviceNameStep() {
               setName((e.target as HTMLInputElement).value.toLowerCase());
               setError(null);
             }}
-            class={`device-name-input ${error ? 'input-error' : ''}`}
+            class="device-name-input"
           />
           <span class="device-name-suffix">.local</span>
         </div>
@@ -79,14 +79,14 @@ export function DeviceNameStep() {
         {error && <p class="error-message">{error}</p>}
 
         {name && !error && (
-          <p class="device-name-preview text-sm text-muted">
+          <p class="device-name-preview">
             {t.deviceNamePreview({ name })}
           </p>
         )}
 
         <button
           type="button"
-          class="help-toggle text-sm"
+          class="help-toggle"
           onClick={() => setHelpOpen(!helpOpen)}
           aria-expanded={helpOpen}
         >
@@ -94,7 +94,7 @@ export function DeviceNameStep() {
         </button>
 
         {helpOpen && (
-          <p class="help-text text-sm text-muted">
+          <p class="help-text">
             {t.deviceNameHelpText({ name: name || 'mydevice' })}
           </p>
         )}

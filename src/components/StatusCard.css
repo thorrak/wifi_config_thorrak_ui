@@ -5,8 +5,8 @@
 }
 
 .status-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--color-border);
   color: var(--color-text-muted);
@@ -22,8 +22,8 @@
 }
 
 .status-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .status-info {
@@ -32,8 +32,8 @@
 }
 
 .status-state {
-  font-weight: 600;
-  margin-bottom: var(--space-1);
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .status-ip {

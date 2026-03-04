@@ -14,9 +14,18 @@
     "scanning": "Đang quét...",
     "empty": "Nhấn Quét để tìm mạng",
     "hidden": "(ẩn)",
+    "select": "Chọn",
     "cancel": "Hủy",
     "connect": "Kết nối",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "connectingTo": "Đang kết nối đến \"{ssid}\"...",
+    "connectingWait": "Quá trình này có thể mất vài giây.",
+    "connectSuccess": "Đã kết nối với \"{ssid}\"",
+    "connectSuccessIp": "Địa chỉ IP: {ip}",
+    "connectFailed": "Kết nối thất bại",
+    "connectFailedDesc": "Không thể kết nối mạng. Kiểm tra mật khẩu và thử lại.",
+    "dismiss": "OK",
+    "retry": "Thử lại"
   },
   "saved": {
     "title": "Mạng đã lưu",
