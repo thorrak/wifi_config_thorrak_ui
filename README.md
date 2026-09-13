@@ -1,92 +1,119 @@
-# ESP WiFi Manager - Web UI
+# wifi_config_thorrak_ui
 
-Modern, responsive web interface for ESP WiFi Manager.
+Provisioning web UI for [TiltBridge](https://github.com/thorrak/tiltbridge) and
+[BrewPi-ESP](https://github.com/thorrak/brewpi-esp8266). It is a thin overlay on
+the generic web UI that ships with the
+[esp_wifi_config](https://github.com/WiFiConfig/esp_wifi_config) library: the
+library's `frontend/` is pulled in as a git submodule and compiled straight
+from source, and this repo adds a device-name (mDNS hostname) step in front of
+the WiFi setup.
 
-## Quick Start
+## Layering rule
+
+- **Generic UI changes go to the library** (`esp_wifi_config/frontend/`),
+  never here. Status card, network scanning/connecting, saved networks, the
+  connection modal, the language selector, the API client, the base
+  translations and the global styles all live there.
+- **This repo owns only the product-specific parts:** the setup wizard shell,
+  the step indicator, the device-name step, the `setup` message namespace and
+  its translations, the logo, and the app entry point.
+
+The library is imported under the `@wificonfig/ui` alias, which maps to
+`esp_wifi_config/frontend/src` (see `vite.config.ts` and `tsconfig.json`).
+`@wificonfig/ui` resolves to the library's `lib.ts` barrel; deep paths such as
+`@wificonfig/ui/styles/base.css` resolve inside the same tree.
+
+## Behaviour
+
+On load the app fetches `GET /api/wifi/status`:
+
+- **Connected** (`state === "connected"`): a status page is rendered: header
+  with title and language selector, the library's status card (polled every
+  5 s), an editable device-name card, the network list and the saved-network
+  list.
+- **Otherwise**: the two-step wizard. Step 1 asks for the device name
+  (prefilled from `GET /api/wifi/vars`, key `mdns_name`; `PUT` only when the
+  value changed). Step 2 is the WiFi network list with the connection modal;
+  once the connection succeeds and the modal is dismissed, the app switches to
+  the status page.
+
+The device name is validated client-side as an RFC 1123 hostname label (1-63
+characters, `[a-z0-9-]`, no leading or trailing hyphen) and lowercased
+automatically.
+
+## Development
 
 ```bash
-# Install dependencies
-npm install
+npm install          # package-lock.json is tracked; `npm ci` for exact versions
+npm run dev:server   # library test server on :8080 with tools/test_server.tiltbridge.json
+npm run dev          # Vite dev server; /api is proxied to 127.0.0.1:8080
+npm run build        # tsc && vite build -> dist/
+```
 
-# Development server (with hot reload)
-npm run dev
+The submodule has no `node_modules` of its own; its sources resolve `preact`,
+`nanostores` and `@nanostores/*` from this repo, so keep the versions in
+`package.json` in step with `esp_wifi_config/frontend/package.json`.
 
-# Production build
+The test server needs `pip install -r esp_wifi_config/tools/test_server/requirements.txt`
+and accepts `--auth USER:PASS` to emulate a device with HTTP auth enabled.
+
+### First checkout
+
+```bash
+git clone --recurse-submodules <this repo>
+# or, in an existing clone:
+git submodule update --init
+```
+
+### Bumping the library
+
+```bash
+git -C esp_wifi_config fetch --tags
+git -C esp_wifi_config checkout <tag>     # e.g. v0.3.2
+git add esp_wifi_config
+git commit -m "chore: bump esp_wifi_config to <tag>"
+```
+
+`.gitmodules` records the branch the submodule tracks; the commit pins the exact
+revision.
+
+## Consuming the build
+
+`npm run build` writes `dist/index.html`, `dist/assets/app.js.gz` and
+`dist/assets/index.css.gz` (the uncompressed assets are deleted). Copy the three
+files into the firmware's `data/wifiui/` directory; TiltBridge and BrewPi-ESP
+serve that directory via
+`WIFI_CFG_WEBUI_CUSTOM_PATH="/littlefs/wifiui"`.
+
+```bash
 npm run build
+cp dist/index.html dist/assets/app.js.gz dist/assets/index.css.gz <firmware>/data/wifiui/
 ```
 
-## Features
+## Translations
 
-- Status display with signal strength
-- Network scanning and connection
-- Saved networks management
-- Dark mode support (auto-detect)
-- Mobile-first responsive design
-- Lightweight (~25KB gzipped)
+English strings for the `setup` namespace are defined in
+`src/i18n/messages/setup.ts`; German, Spanish, French and Vietnamese live in
+`src/i18n/translations/{de,es,fr,vi}.json` (setup namespace only) and are merged
+into the library's catalogs with `registerTranslations()` in `src/main.tsx`
+before the first render. Every new key must be added to all five languages.
 
-## Customization
-
-### Change Theme
-
-Edit `src/styles/variables.css`:
-
-```css
-:root {
-  --color-primary: #3b82f6;    /* Change accent color */
-  --color-bg: #f8fafc;         /* Background */
-  --color-surface: #ffffff;    /* Card background */
-}
-```
-
-### Add Custom Component
-
-1. Create component in `src/components/`
-2. Import in `App.tsx`
-3. Rebuild: `npm run build`
-
-### Replace UI Completely
-
-1. Keep `src/api/client.ts` for API calls
-2. Replace components as needed
-3. Follow API types in `src/types.ts`
-
-## Build for ESP32
-
-After building, output files are in `dist/`:
-- `index.html` (~1KB)
-- `assets/app.js` (~20KB gzipped)
-- `assets/style.css` (~3KB gzipped)
-
-These files are embedded into firmware via CMakeLists.txt.
-
-## Project Structure
+## Project structure
 
 ```
-frontend/
-├── src/
-│   ├── api/           # REST API client
-│   ├── components/    # Preact components
-│   │   └── ui/        # Reusable UI components
-│   ├── hooks/         # Custom hooks
-│   ├── styles/        # CSS
-│   ├── types.ts       # TypeScript types
-│   ├── App.tsx        # Main app
-│   └── main.tsx       # Entry point
-├── dist/              # Build output
-├── package.json
-├── vite.config.ts
-└── tsconfig.json
+esp_wifi_config/            # submodule: the library (frontend/src is @wificonfig/ui)
+src/
+  main.tsx                  # registers translations, imports global styles, renders App
+  App.tsx                   # /status probe; status page vs wizard
+  components/
+    StatusPage.tsx          # connected view (status, device name, networks)
+    SetupWizard.tsx         # two-step wizard shell
+    StepIndicator.tsx/.css
+    DeviceNameStep.tsx/.css # mDNS name form (wizard + inline modes)
+  i18n/messages/setup.ts    # English base strings
+  i18n/translations/*.json  # de/es/fr/vi, setup namespace
+  stores/wizard.ts          # current wizard step
+  styles/app.css            # overlay-only styles
+  assets/logo.svg
+tools/test_server.tiltbridge.json   # fixture for `npm run dev:server`
 ```
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/wifi/status | WiFi status |
-| GET | /api/wifi/scan | Scan networks |
-| GET | /api/wifi/networks | Saved networks |
-| POST | /api/wifi/networks | Add network |
-| DELETE | /api/wifi/networks/:ssid | Delete network |
-| POST | /api/wifi/connect | Connect |
-| POST | /api/wifi/disconnect | Disconnect |
-| POST | /api/wifi/factory_reset | Factory reset |
