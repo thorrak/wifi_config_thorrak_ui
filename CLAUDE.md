@@ -1,6 +1,7 @@
 # wifi_config_thorrak_ui — project instructions
 
-Provisioning web UI for TiltBridge and BrewPi-ESP. A thin overlay on the
+Provisioning web UI for TiltBridge, BrewPi-ESP and RepelBridge. A thin overlay
+on the
 `esp_wifi_config` library's web UI, which is a git submodule at
 `esp_wifi_config/` and imported as `@wificonfig/ui`
 (`esp_wifi_config/frontend/src`; the bare specifier maps to `lib.ts`).
@@ -35,14 +36,36 @@ Preact 10 + TypeScript (strict, `noUnusedLocals`), Vite 5, nanostores +
 `esp_wifi_config/frontend/package.json` because the submodule resolves them
 from this repo's `node_modules`.
 
+## Products / branding
+
+One build per product, selected by Vite mode. `.env.<mode>` holds
+`VITE_PRODUCT_NAME`; `vite.config.ts` (`defineConfig(({ mode }) => ...)` +
+`loadEnv`) throws if it is empty and writes to `dist/<mode>/`.
+
+| Mode          | Name        | Output              | Consumer                                  |
+|---------------|-------------|---------------------|-------------------------------------------|
+| `tiltbridge`  | TiltBridge  | `dist/tiltbridge/`  | TiltBridge firmware `data/wifiui/`        |
+| `brewpi`      | BrewPi-ESP  | `dist/brewpi/`      | BrewPi-ESP firmware `data/wifiui/`        |
+| `repelbridge` | RepelBridge | `dist/repelbridge/` | RepelBridge firmware `data/wifiui/` (planned) |
+
+The name is used in exactly three places: `index.html` `<title>`
+(`%VITE_PRODUCT_NAME% WiFi Setup`), `setup.welcomeTitle` (`{product}` param,
+all five languages) and the `StatusPage` `<h1>`, all via
+`import.meta.env.VITE_PRODUCT_NAME` (declared in `src/vite-env.d.ts`).
+**Never hardcode a product name in source, `index.html` or a translation** —
+only the `.env.*` files carry them. Adding a product = one `.env.<mode>` file
++ one `build:<mode>` script in `package.json` (append it to `build` too).
+
 ## Workflow
 
 - `npm run dev:server` (library test server + `tools/test_server.tiltbridge.json`),
-  `npm run dev`, `npm run build` (`tsc && vite build`; must pass with no
-  `console.log`).
-- Output: `dist/index.html`, `dist/assets/app.js.gz`, `dist/assets/index.css.gz`
-  (fixed names, originals deleted). Firmware copies them into `data/wifiui/`
-  and serves via `WIFI_CFG_WEBUI_CUSTOM_PATH="/littlefs/wifiui"`.
+  `npm run dev` (= `vite --mode tiltbridge`; also `dev:brewpi`,
+  `dev:repelbridge`), `npm run build` (tsc once, then all three products;
+  `build:<mode>` for one). Must pass `tsc` strict with no `console.log`.
+- Output per product: `dist/<mode>/index.html`, `dist/<mode>/assets/app.js.gz`,
+  `dist/<mode>/assets/index.css.gz` (fixed names, originals deleted). Firmware
+  copies them into `data/wifiui/` and serves via
+  `WIFI_CFG_WEBUI_CUSTOM_PATH="/littlefs/wifiui"`.
 - Bump the library: `git -C esp_wifi_config fetch --tags && git -C esp_wifi_config checkout <tag>`,
   then `git add esp_wifi_config` and commit. Do not pick the tag yourself.
 

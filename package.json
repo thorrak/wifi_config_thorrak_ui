@@ -2,11 +2,16 @@
   "name": "wifi-config-thorrak-ui",
   "version": "1.0.0",
   "private": true,
-  "description": "TiltBridge / BrewPi-ESP provisioning UI, layered on the esp_wifi_config web UI",
+  "description": "TiltBridge / BrewPi-ESP / RepelBridge provisioning UI, layered on the esp_wifi_config web UI",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode tiltbridge",
+    "dev:brewpi": "vite --mode brewpi",
+    "dev:repelbridge": "vite --mode repelbridge",
     "dev:server": "python3 esp_wifi_config/tools/test_server/test_server.py --config tools/test_server.tiltbridge.json",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --mode tiltbridge && vite build --mode brewpi && vite build --mode repelbridge",
+    "build:tiltbridge": "tsc && vite build --mode tiltbridge",
+    "build:brewpi": "tsc && vite build --mode brewpi",
+    "build:repelbridge": "tsc && vite build --mode repelbridge",
     "preview": "vite preview"
   },
   "dependencies": {

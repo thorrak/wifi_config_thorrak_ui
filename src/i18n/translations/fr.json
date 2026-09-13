@@ -2,7 +2,7 @@
   "setup": {
     "stepOf": "Étape {current} sur {total}",
     "stepLabel": "Étape {step}",
-    "welcomeTitle": "Bienvenue sur ESP WiFi Manager",
+    "welcomeTitle": "Bienvenue sur {product}",
     "welcomeSubtitle": "Configurons votre appareil.",
     "deviceNameLabel": "Nom de l'appareil",
     "deviceNamePreview": "Votre appareil sera accessible à {name}.local",

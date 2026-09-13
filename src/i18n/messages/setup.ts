@@ -4,7 +4,7 @@ import { i18n } from '@wificonfig/ui'
 export const setupMessages = i18n('setup', {
   stepOf: params<{ current: string; total: string }>('Step {current} of {total}'),
   stepLabel: params<{ step: string }>('Step {step}'),
-  welcomeTitle: 'Welcome to ESP WiFi Manager',
+  welcomeTitle: params<{ product: string }>('Welcome to {product}'),
   welcomeSubtitle: "Let's get your device set up.",
   deviceNameLabel: 'Device Name',
   deviceNamePreview: params<{ name: string }>('Your device will be reachable at {name}.local'),

@@ -1,7 +1,8 @@
 # wifi_config_thorrak_ui
 
-Provisioning web UI for [TiltBridge](https://github.com/thorrak/tiltbridge) and
-[BrewPi-ESP](https://github.com/thorrak/brewpi-esp8266). It is a thin overlay on
+Provisioning web UI for [TiltBridge](https://github.com/thorrak/tiltbridge),
+[BrewPi-ESP](https://github.com/thorrak/brewpi-esp8266) and RepelBridge. It is
+a thin overlay on
 the generic web UI that ships with the
 [esp_wifi_config](https://github.com/WiFiConfig/esp_wifi_config) library: the
 library's `frontend/` is pulled in as a git submodule and compiled straight
@@ -46,9 +47,13 @@ automatically.
 ```bash
 npm install          # package-lock.json is tracked; `npm ci` for exact versions
 npm run dev:server   # library test server on :8080 with tools/test_server.tiltbridge.json
-npm run dev          # Vite dev server; /api is proxied to 127.0.0.1:8080
-npm run build        # tsc && vite build -> dist/
+npm run dev          # Vite dev server (TiltBridge branding); /api is proxied to 127.0.0.1:8080
+npm run dev:brewpi   # same, BrewPi-ESP branding (also dev:repelbridge)
+npm run build        # tsc, then one vite build per product -> dist/<mode>/
 ```
+
+Single-product builds: `npm run build:tiltbridge`, `npm run build:brewpi`,
+`npm run build:repelbridge`.
 
 The submodule has no `node_modules` of its own; its sources resolve `preact`,
 `nanostores` and `@nanostores/*` from this repo, so keep the versions in
@@ -77,17 +82,45 @@ git commit -m "chore: bump esp_wifi_config to <tag>"
 `.gitmodules` records the branch the submodule tracks; the commit pins the exact
 revision.
 
+## Products and branding
+
+The same source is built once per product. A build is selected with a Vite
+mode; the mode's `.env.<mode>` file carries the only product-specific value,
+`VITE_PRODUCT_NAME`, which `vite.config.ts` requires to be non-empty (the build
+fails otherwise). The name is substituted into the `<title>` of `index.html`
+(`%VITE_PRODUCT_NAME% WiFi Setup`), the wizard welcome heading
+(`setup.welcomeTitle`, parameter `{product}`) and the status page header.
+
+| Mode          | `VITE_PRODUCT_NAME` | Output              | Consumed by                                   |
+|---------------|---------------------|---------------------|-----------------------------------------------|
+| `tiltbridge`  | TiltBridge          | `dist/tiltbridge/`  | [TiltBridge](https://github.com/thorrak/tiltbridge) firmware, `data/wifiui/` |
+| `brewpi`      | BrewPi-ESP          | `dist/brewpi/`      | [BrewPi-ESP](https://github.com/thorrak/brewpi-esp8266) firmware, `data/wifiui/` |
+| `repelbridge` | RepelBridge         | `dist/repelbridge/` | RepelBridge firmware, `data/wifiui/` (same layout) |
+
+**No product name may appear in source.** `src/`, `index.html` and the
+translations only ever reference `VITE_PRODUCT_NAME` / `{product}`; the `.env.*`
+files are the single place a name is spelled out.
+
+### Adding a product
+
+1. Create `.env.<mode>` containing `VITE_PRODUCT_NAME=<Display Name>`.
+2. Add `"build:<mode>": "tsc && vite build --mode <mode>"` to `package.json`
+   (and append the `vite build --mode <mode>` step to `build`; optionally a
+   `dev:<mode>` script).
+3. Add a row to the table above.
+
 ## Consuming the build
 
-`npm run build` writes `dist/index.html`, `dist/assets/app.js.gz` and
-`dist/assets/index.css.gz` (the uncompressed assets are deleted). Copy the three
-files into the firmware's `data/wifiui/` directory; TiltBridge and BrewPi-ESP
-serve that directory via
-`WIFI_CFG_WEBUI_CUSTOM_PATH="/littlefs/wifiui"`.
+Each product build writes `dist/<mode>/index.html`,
+`dist/<mode>/assets/app.js.gz` and `dist/<mode>/assets/index.css.gz` (the
+uncompressed assets are deleted; the three filenames are fixed). TiltBridge and
+BrewPi-ESP copy the three files into the firmware's `data/wifiui/` directory
+and serve it via `WIFI_CFG_WEBUI_CUSTOM_PATH="/littlefs/wifiui"`; RepelBridge
+will do the same.
 
 ```bash
-npm run build
-cp dist/index.html dist/assets/app.js.gz dist/assets/index.css.gz <firmware>/data/wifiui/
+npm run build:tiltbridge
+cp dist/tiltbridge/index.html dist/tiltbridge/assets/app.js.gz dist/tiltbridge/assets/index.css.gz <tiltbridge>/data/wifiui/
 ```
 
 ## Translations
@@ -101,6 +134,7 @@ before the first render. Every new key must be added to all five languages.
 ## Project structure
 
 ```
+.env.{tiltbridge,brewpi,repelbridge}   # VITE_PRODUCT_NAME per product (only place names live)
 esp_wifi_config/            # submodule: the library (frontend/src is @wificonfig/ui)
 src/
   main.tsx                  # registers translations, imports global styles, renders App
@@ -110,6 +144,7 @@ src/
     SetupWizard.tsx         # two-step wizard shell
     StepIndicator.tsx/.css
     DeviceNameStep.tsx/.css # mDNS name form (wizard + inline modes)
+  vite-env.d.ts             # ImportMetaEnv: VITE_PRODUCT_NAME
   i18n/messages/setup.ts    # English base strings
   i18n/translations/*.json  # de/es/fr/vi, setup namespace
   stores/wizard.ts          # current wizard step

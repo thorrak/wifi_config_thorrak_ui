@@ -148,7 +148,7 @@ export function DeviceNameStep({ mode }: Props) {
   return (
     <div class="device-name-step">
       <img src={logo} alt="" class="setup-logo" />
-      <h1 class="setup-title">{t.welcomeTitle}</h1>
+      <h1 class="setup-title">{t.welcomeTitle({ product: import.meta.env.VITE_PRODUCT_NAME })}</h1>
       <p class="setup-subtitle text-muted">{t.welcomeSubtitle}</p>
       <Card>{form}</Card>
     </div>

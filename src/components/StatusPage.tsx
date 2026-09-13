@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useStore } from '@nanostores/preact';
 import {
   api,
-  appMessages,
   StatusCard,
   NetworkList,
   SavedNetworks,
@@ -21,7 +19,6 @@ interface Props {
 export function StatusPage({ initialStatus }: Props) {
   const [status, setStatus] = useState<WifiStatus | null>(initialStatus);
   const [savedVersion, setSavedVersion] = useState(0);
-  const t = useStore(appMessages);
 
   const loadStatus = async () => {
     try {
@@ -39,7 +36,7 @@ export function StatusPage({ initialStatus }: Props) {
   return (
     <div class="app">
       <header class="header">
-        <h1>{t.title}</h1>
+        <h1>{import.meta.env.VITE_PRODUCT_NAME}</h1>
         <LanguageSelector />
       </header>
 
