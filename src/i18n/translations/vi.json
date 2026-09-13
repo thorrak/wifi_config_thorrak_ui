@@ -1,54 +1,20 @@
 {
-  "app": {
-    "title": "Quản lý WiFi ESP"
-  },
-  "status": {
-    "loading": "Đang tải...",
-    "error": "Không thể tải trạng thái",
-    "connected": "Đã kết nối với \"{ssid}\"",
-    "disconnected": "Đã ngắt kết nối"
-  },
-  "networks": {
-    "title": "Mạng khả dụng",
-    "scan": "Quét",
-    "scanning": "Đang quét...",
-    "empty": "Nhấn Quét để tìm mạng",
-    "hidden": "(ẩn)",
-    "select": "Chọn",
-    "cancel": "Hủy",
-    "connect": "Kết nối",
-    "password": "Mật khẩu",
-    "connectingTo": "Đang kết nối đến \"{ssid}\"...",
-    "connectingWait": "Quá trình này có thể mất vài giây.",
-    "connectSuccess": "Đã kết nối với \"{ssid}\"",
-    "connectSuccessIp": "Địa chỉ IP: {ip}",
-    "connectFailed": "Kết nối thất bại",
-    "connectFailedDesc": "Không thể kết nối mạng. Kiểm tra mật khẩu và thử lại.",
-    "dismiss": "OK",
-    "retry": "Thử lại"
-  },
-  "saved": {
-    "title": "Mạng đã lưu",
-    "cancel": "Hủy",
-    "add": "+ Thêm",
-    "ssid": "SSID",
-    "passwordOptional": "Mật khẩu (tùy chọn)",
-    "addNetwork": "Thêm mạng",
-    "loading": "Đang tải...",
-    "empty": "Không có mạng đã lưu",
-    "priority": "Ưu tiên: {priority}"
-  },
   "setup": {
     "stepOf": "Bước {current} / {total}",
+    "stepLabel": "Bước {step}",
     "welcomeTitle": "Chào mừng đến ESP WiFi Manager",
     "welcomeSubtitle": "Hãy thiết lập thiết bị của bạn.",
     "deviceNameLabel": "Tên thiết bị",
     "deviceNamePreview": "Thiết bị của bạn sẽ truy cập được tại {name}.local",
     "deviceNameHelp": "Đây là gì?",
     "deviceNameHelpText": "Tên này giúp bạn tìm thiết bị trên mạng nội bộ. Thay vì nhớ địa chỉ IP, bạn có thể dùng {name}.local trong trình duyệt.",
+    "loading": "Đang tải...",
     "next": "Tiếp theo",
+    "save": "Lưu",
     "saving": "Đang lưu...",
+    "saved": "Đã lưu tên thiết bị.",
     "errorInvalid": "Dùng 1–63 chữ thường, số hoặc dấu gạch ngang. Không bắt đầu/kết thúc bằng dấu gạch ngang.",
+    "errorLoadFailed": "Không thể tải tên thiết bị hiện tại. Bạn vẫn có thể nhập tên mới.",
     "errorSaveFailed": "Lưu thất bại. Vui lòng thử lại.",
     "wifiTitle": "Kết nối WiFi",
     "wifiSubtitle": "Chọn mạng của bạn để kết nối."

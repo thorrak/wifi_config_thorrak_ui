@@ -24,7 +24,7 @@ export function StepIndicator({ current, total }: Props) {
               class={`step-dot ${step === current ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
               disabled={step >= current}
               onClick={() => wizardStep.set(step as 1 | 2)}
-              aria-label={`Step ${step}`}
+              aria-label={t.stepLabel({ step: String(step) })}
             />
           );
         })}

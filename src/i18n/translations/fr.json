@@ -1,54 +1,20 @@
 {
-  "app": {
-    "title": "Gestionnaire WiFi ESP"
-  },
-  "status": {
-    "loading": "Chargement...",
-    "error": "Impossible de charger l'état",
-    "connected": "Connecté à \"{ssid}\"",
-    "disconnected": "Déconnecté"
-  },
-  "networks": {
-    "title": "Réseaux disponibles",
-    "scan": "Analyser",
-    "scanning": "Analyse...",
-    "empty": "Appuyez sur Analyser pour rechercher des réseaux",
-    "hidden": "(masqué)",
-    "select": "Sélectionner",
-    "cancel": "Annuler",
-    "connect": "Connecter",
-    "password": "Mot de passe",
-    "connectingTo": "Connexion à \"{ssid}\"...",
-    "connectingWait": "Cela peut prendre quelques secondes.",
-    "connectSuccess": "Connecté à \"{ssid}\"",
-    "connectSuccessIp": "Adresse IP : {ip}",
-    "connectFailed": "Échec de la connexion",
-    "connectFailedDesc": "Impossible de se connecter au réseau. Vérifiez le mot de passe et réessayez.",
-    "dismiss": "OK",
-    "retry": "Réessayer"
-  },
-  "saved": {
-    "title": "Réseaux enregistrés",
-    "cancel": "Annuler",
-    "add": "+ Ajouter",
-    "ssid": "SSID",
-    "passwordOptional": "Mot de passe (facultatif)",
-    "addNetwork": "Ajouter un réseau",
-    "loading": "Chargement...",
-    "empty": "Aucun réseau enregistré",
-    "priority": "Priorité : {priority}"
-  },
   "setup": {
     "stepOf": "Étape {current} sur {total}",
+    "stepLabel": "Étape {step}",
     "welcomeTitle": "Bienvenue sur ESP WiFi Manager",
     "welcomeSubtitle": "Configurons votre appareil.",
     "deviceNameLabel": "Nom de l'appareil",
     "deviceNamePreview": "Votre appareil sera accessible à {name}.local",
     "deviceNameHelp": "Qu'est-ce que c'est ?",
     "deviceNameHelpText": "Ce nom vous permet de trouver votre appareil sur le réseau local. Au lieu de mémoriser une adresse IP, vous pouvez utiliser {name}.local dans votre navigateur.",
+    "loading": "Chargement...",
     "next": "Suivant",
+    "save": "Enregistrer",
     "saving": "Enregistrement...",
+    "saved": "Nom de l'appareil enregistré.",
     "errorInvalid": "Utilisez 1 à 63 lettres minuscules, chiffres ou tirets. Ne peut pas commencer/finir par un tiret.",
+    "errorLoadFailed": "Impossible de charger le nom actuel de l'appareil. Vous pouvez tout de même en saisir un nouveau.",
     "errorSaveFailed": "Échec de l'enregistrement. Veuillez réessayer.",
     "wifiTitle": "Se connecter au WiFi",
     "wifiSubtitle": "Sélectionnez votre réseau pour vous connecter."

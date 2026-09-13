@@ -1,54 +1,20 @@
 {
-  "app": {
-    "title": "Gestor WiFi ESP"
-  },
-  "status": {
-    "loading": "Cargando...",
-    "error": "No se pudo cargar el estado",
-    "connected": "Conectado a \"{ssid}\"",
-    "disconnected": "Desconectado"
-  },
-  "networks": {
-    "title": "Redes disponibles",
-    "scan": "Escanear",
-    "scanning": "Escaneando...",
-    "empty": "Pulse Escanear para buscar redes",
-    "hidden": "(oculta)",
-    "select": "Seleccionar",
-    "cancel": "Cancelar",
-    "connect": "Conectar",
-    "password": "Contraseña",
-    "connectingTo": "Conectando a \"{ssid}\"...",
-    "connectingWait": "Esto puede tardar unos segundos.",
-    "connectSuccess": "Conectado a \"{ssid}\"",
-    "connectSuccessIp": "Dirección IP: {ip}",
-    "connectFailed": "Error de conexión",
-    "connectFailedDesc": "No se pudo conectar a la red. Verifica la contraseña e inténtalo de nuevo.",
-    "dismiss": "OK",
-    "retry": "Reintentar"
-  },
-  "saved": {
-    "title": "Redes guardadas",
-    "cancel": "Cancelar",
-    "add": "+ Añadir",
-    "ssid": "SSID",
-    "passwordOptional": "Contraseña (opcional)",
-    "addNetwork": "Añadir red",
-    "loading": "Cargando...",
-    "empty": "Sin redes guardadas",
-    "priority": "Prioridad: {priority}"
-  },
   "setup": {
     "stepOf": "Paso {current} de {total}",
+    "stepLabel": "Paso {step}",
     "welcomeTitle": "Bienvenido a ESP WiFi Manager",
     "welcomeSubtitle": "Vamos a configurar tu dispositivo.",
     "deviceNameLabel": "Nombre del dispositivo",
     "deviceNamePreview": "Tu dispositivo estará disponible en {name}.local",
     "deviceNameHelp": "¿Qué es esto?",
     "deviceNameHelpText": "Este nombre te permite encontrar tu dispositivo en la red local. En lugar de recordar una dirección IP, puedes usar {name}.local en tu navegador.",
+    "loading": "Cargando...",
     "next": "Siguiente",
+    "save": "Guardar",
     "saving": "Guardando...",
+    "saved": "Nombre del dispositivo guardado.",
     "errorInvalid": "Usa 1–63 letras minúsculas, números o guiones. No puede empezar/terminar con guion.",
+    "errorLoadFailed": "No se pudo cargar el nombre actual del dispositivo. Aun así puedes introducir uno nuevo.",
     "errorSaveFailed": "Error al guardar. Inténtalo de nuevo.",
     "wifiTitle": "Conectar a WiFi",
     "wifiSubtitle": "Selecciona tu red para conectarte."

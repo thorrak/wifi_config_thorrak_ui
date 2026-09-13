@@ -1,54 +1,20 @@
 {
-  "app": {
-    "title": "ESP WLAN-Manager"
-  },
-  "status": {
-    "loading": "Laden...",
-    "error": "Status konnte nicht geladen werden",
-    "connected": "Verbunden mit \"{ssid}\"",
-    "disconnected": "Getrennt"
-  },
-  "networks": {
-    "title": "Verfügbare Netzwerke",
-    "scan": "Suchen",
-    "scanning": "Suche...",
-    "empty": "Klicken Sie auf Suchen, um Netzwerke zu finden",
-    "hidden": "(versteckt)",
-    "select": "Auswählen",
-    "cancel": "Abbrechen",
-    "connect": "Verbinden",
-    "password": "Passwort",
-    "connectingTo": "Verbindung zu \"{ssid}\"...",
-    "connectingWait": "Dies kann einige Sekunden dauern.",
-    "connectSuccess": "Verbunden mit \"{ssid}\"",
-    "connectSuccessIp": "IP-Adresse: {ip}",
-    "connectFailed": "Verbindung fehlgeschlagen",
-    "connectFailedDesc": "Verbindung zum Netzwerk nicht möglich. Überprüfen Sie das Passwort und versuchen Sie es erneut.",
-    "dismiss": "OK",
-    "retry": "Erneut versuchen"
-  },
-  "saved": {
-    "title": "Gespeicherte Netzwerke",
-    "cancel": "Abbrechen",
-    "add": "+ Hinzufügen",
-    "ssid": "SSID",
-    "passwordOptional": "Passwort (optional)",
-    "addNetwork": "Netzwerk hinzufügen",
-    "loading": "Laden...",
-    "empty": "Keine gespeicherten Netzwerke",
-    "priority": "Priorität: {priority}"
-  },
   "setup": {
     "stepOf": "Schritt {current} von {total}",
+    "stepLabel": "Schritt {step}",
     "welcomeTitle": "Willkommen beim ESP WiFi Manager",
     "welcomeSubtitle": "Richten wir Ihr Gerät ein.",
     "deviceNameLabel": "Gerätename",
     "deviceNamePreview": "Ihr Gerät wird unter {name}.local erreichbar sein",
     "deviceNameHelp": "Was ist das?",
     "deviceNameHelpText": "Mit diesem Namen finden Sie Ihr Gerät im lokalen Netzwerk. Anstatt sich eine IP-Adresse zu merken, können Sie {name}.local in Ihrem Browser verwenden.",
+    "loading": "Laden...",
     "next": "Weiter",
+    "save": "Speichern",
     "saving": "Speichern...",
+    "saved": "Gerätename gespeichert.",
     "errorInvalid": "Verwenden Sie 1–63 Kleinbuchstaben, Zahlen oder Bindestriche. Darf nicht mit Bindestrich beginnen/enden.",
+    "errorLoadFailed": "Der aktuelle Gerätename konnte nicht geladen werden. Sie können trotzdem einen neuen eingeben.",
     "errorSaveFailed": "Speichern fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "wifiTitle": "Mit WLAN verbinden",
     "wifiSubtitle": "Wählen Sie Ihr Netzwerk aus."

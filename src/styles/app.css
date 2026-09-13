@@ -1,0 +1,7 @@
+/* Overlay-only styles; everything generic comes from @wificonfig/ui/styles. */
+
+/* The wizard header only carries the language selector: keep it right-aligned. */
+.header-wizard {
+  justify-content: flex-end;
+  margin-bottom: var(--space-2);
+}
