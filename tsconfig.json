@@ -8,6 +8,7 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
@@ -15,7 +16,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@wificonfig/ui": ["./esp_wifi_config/frontend/src/lib.ts"],
+      "@wificonfig/ui/*": ["./esp_wifi_config/frontend/src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "esp_wifi_config/frontend/src"]
 }

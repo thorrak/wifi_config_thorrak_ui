@@ -1,9 +1,11 @@
 {
-  "name": "esp-wifi-manager-ui",
+  "name": "wifi-config-thorrak-ui",
   "version": "1.0.0",
-  "description": "Modern Web UI for ESP WiFi Manager",
+  "private": true,
+  "description": "TiltBridge / BrewPi-ESP provisioning UI, layered on the esp_wifi_config web UI",
   "scripts": {
     "dev": "vite",
+    "dev:server": "python3 esp_wifi_config/tools/test_server/test_server.py --config tools/test_server.tiltbridge.json",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
