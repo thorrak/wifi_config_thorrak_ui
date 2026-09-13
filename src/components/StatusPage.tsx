@@ -20,6 +20,7 @@ interface Props {
 /** Shown when the device is already connected: status, device name, networks. */
 export function StatusPage({ initialStatus }: Props) {
   const [status, setStatus] = useState<WifiStatus | null>(initialStatus);
+  const [savedVersion, setSavedVersion] = useState(0);
   const t = useStore(appMessages);
 
   const loadStatus = async () => {
@@ -44,8 +45,13 @@ export function StatusPage({ initialStatus }: Props) {
 
       <StatusCard status={status} loading={false} />
       <DeviceNameStep mode="inline" />
-      <NetworkList onConnect={loadStatus} />
-      <SavedNetworks />
+      <NetworkList
+        onConnect={() => {
+          loadStatus();
+          setSavedVersion((v) => v + 1);
+        }}
+      />
+      <SavedNetworks refreshKey={savedVersion} />
     </div>
   );
 }

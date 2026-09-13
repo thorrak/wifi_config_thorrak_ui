@@ -3,7 +3,8 @@
   margin: 0 auto;
 }
 
-.wifi-step {
+.wifi-step .setup-title,
+.wifi-step .setup-subtitle {
   text-align: center;
 }
 
